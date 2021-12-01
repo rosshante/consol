@@ -1,0 +1,14 @@
+using System;
+
+class MyClass
+{
+    static void Main()
+    {
+        Console.WriteLine("Введите число больше 99 но меньше 1000");
+        int x = Convert.ToInt32(Console.ReadLine());
+        if (x < 100 || x >= 1000) return;
+        if (x / 10 % 10 > x % 10) Console.WriteLine("Вторая цифра больше");
+        else Console.WriteLine("Последняя цифра больше");
+        Console.ReadKey(true);
+    }
+}
