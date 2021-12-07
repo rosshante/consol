@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication
+{
+class Class
+{
+static int[,] Input(out int n)
+{
+Console.WriteLine("введите размерность массива");
+Console.Write("n = ");
+n = int.Parse(Console.ReadLine());
+int[,] a = new int[n, n];
+for (int i = 0; i < n; ++i)
+for (int j = 0; j < n; ++j)
+{
+Console.Write("a[{0},{1}]= ", i, j);
+a[i, j] = int.Parse(Console.ReadLine());
+}
+return a;
+}
+
+static void Print(int[,] a)
+{
+for (int i = 0; i < a.GetLength(0); ++i, Console.WriteLine())
+for (int j = 0; j < a.GetLength(1); ++j)
+Console.Write("{0,5} ", a[i, j]);
+}
+
+static void Print(int[] a, int n)
+{
+Console.WriteLine("Новый массив: ");
+for (int i = 0; i < n; ++i)
+Console.Write("{0,5} ", a[i]);
+}
+
+static int[] Chtoto(int[,] a, int n)
+{
+int P = 0;
+int[] ans = new int[n];
+for (int j = 0; j < n;/* ans[j] = P, P = 0,*/ j++)
+
+for (int i = 0; i < n; ++i)
+{
+if (a[i, j] > 0)
+{
+ans[P++] = a[i, j];
+break;
+}
+}
+
+return ans;
+}
+static int[] Chtoto(int[,] a, int n, int prop1, int prop2)
+{
+int P = 1;
+int[] ans = new int[n];
+for (int j = 0; j < n; P = 1, j++)
+
+for (int i = 0; i < n; ++i)
+{
+if ((i >= (prop1 - 1)) && (i <= (prop2 - 1)))
+{
+P *= a[i, j];
+}
+ans[j] = P;
+}
+
+return ans;
+}
+
+static void Main()
+{
+int n, prop1 = 0, prop2 = 0;
+int[,] myArray = Input(out n);
+int[] AnswerArray = new int[n];
+Console.Write("Введите промежутки: ");
+prop1 = int.Parse(Console.ReadLine());
+prop2 = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Исходный массив:");
+Print(myArray);
+AnswerArray = Chtoto(myArray, n, prop1, prop2);
+Print(AnswerArray, n);
+Console.WriteLine();
+Console.ReadKey();
+
+}
+}
+}
