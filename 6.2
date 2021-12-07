@@ -1,0 +1,36 @@
+using System;
+namespace ConsoleApplication2
+{
+class Class
+{
+static int[] Input()
+{
+Console.WriteLine("Введите размерность массива");
+int n = int.Parse(Console.ReadLine());
+int[] a = new int[n];
+for (int i = 0; i < n; ++i)
+{
+Console.Write("a[{0}]= ", i);
+a[i] = int.Parse(Console.ReadLine());
+}
+return a;
+}
+static int Min(int[] a)
+{
+int min = int.MaxValue;
+for (int i = 0; i < a.Length; ++i)
+if ((a[i] > 0) && (a[i] < min)) min = a[i];
+return min;
+}
+static void Main()
+{
+int[] a = Input();
+int min = Min(a);
+for (int i = 0; i < a.Length; ++i)
+if (a[i] == min)
+
+Console.WriteLine("{0} ", a[i]);
+Console.ReadKey();
+}
+}
+}
