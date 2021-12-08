@@ -1,0 +1,26 @@
+using System;
+namespace ConsoleApplication_test
+{
+class Program
+{
+static void Main()
+{
+int i = new int(), a = new int();
+char[] delim = { '.', ',', '!', '?', '-', ';', ':' };
+string my_String;
+Console.WriteLine("Введите строку:");
+my_String = Console.ReadLine();
+for (i = 0; i < delim.Length; ++i)
+{
+a = 0;
+while ((a = my_String.IndexOf(delim[i], a)) > 0)
+{
+my_String = my_String.Remove(a, 1);
+
+}
+}
+Console.WriteLine("Строка с убранными знаками препинания: {0}", my_String);
+Console.ReadKey();
+}
+}
+}
