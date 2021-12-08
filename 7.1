@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication
+{
+class Program
+{
+static void Main(string[] args)
+{
+string src = ".... Qwy. Hhhh ... Asdf.. Nnnnn.... Lkjdfs ......A.";
+//string dest = ReplaceDots(src, '.', '…', 3);
+string dest = ReplaceDots(src, '.', "...", 3);
+
+Console.WriteLine("src:\t" + src);
+Console.WriteLine("dest:\t" + dest);
+
+Console.WriteLine();
+Console.Write("Press any key for exit ...");
+Console.ReadKey(true);
+}
+
+//private static string ReplaceDots(string src, char dotCh, char dots, int minDotsCount)
+private static string ReplaceDots(string src, char dotCh, string dots, int minDotsCount)
+{
+StringBuilder dest = new StringBuilder();
+
+int i = 0;
+while (i < src.Length)
+{
+int dotsCount = 0;
+while (i < src.Length && src[i] == dotCh)
+{
+dotsCount++;
+i++;
+}
+
+if (dotsCount >= minDotsCount)
+dest.Append(dots);
+else if (dotsCount == 0)
+dest.Append(src[i++]);
+else
+while (dotsCount— > 0)
+dest.Append(dotCh);
+}
+
+return dest.ToString(); ;
+}
+}
+}
