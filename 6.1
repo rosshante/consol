@@ -1,0 +1,22 @@
+using System;
+
+namespace xaxaxa
+{
+class Program
+{
+static void Main()
+{
+int[] a = { 12, 14, 35, 57, 45, 21, 68, 41, 89, 49, 84 };
+int[,] b = { { 1, 63, 70 }, { 56, 54, 51 }, { 77, 91, 7 } };
+Console.WriteLine("Элементы одномерного массива A НЕ делящиеся на 7 ");
+for (int i = 0; i < a.Length; i++)
+if (a[i] % 7 != 0)
+Console.WriteLine("A[{0}] = {1}", i, a[i]);
+Console.WriteLine("Элементы двумерного массива B НЕ делящиеся на 7 ");
+for (int i = 0; i < b.GetUpperBound(0) + 1; i++)
+for (int j = 0; j < b.GetUpperBound(1) + 1; j++)
+if (b[i, j] % 7 != 0)
+Console.WriteLine("B[{0},{1}] = {2}", i, j, b[i, j]);
+}
+}
+}
