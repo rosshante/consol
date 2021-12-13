@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace Prog18_nul_10
+{
+    class Program
+    {
+        static void Main()
+
+        {
+            Regex r = new Regex(@"((1\d\d|2([0-4]\d|5[0-5])|\D\d\d?)\.?){4}$");
+            string text1 = "ip = 128.0.0.1";
+            string text2 = "ip = 256.0.0.1";
+            string text3 = "ip = 0.0.0.0";
+            string text4 = "ip = 255.255.255.255";
+            string text5 = "ip = 255:228:0:0";
+            Console.WriteLine(r.IsMatch(text1));
+            Console.WriteLine(r.IsMatch(text2));
+            Console.WriteLine(r.IsMatch(text3));
+            Console.WriteLine(r.IsMatch(text4));
+            Console.WriteLine(r.IsMatch(text5));
+        }
+    }
+}
