@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите текст.");
+            string text = Console.ReadLine();
+            char[] separators = { ' ', ',', ':', ';', '.', '!', '?' };
+            string[] splitedText = text.Split(separators);
+            foreach (string str in splitedText)
+            {
+                if (str != null)
+                {
+                    if (isPolyndrom(str))
+                    {
+                        Console.WriteLine(str);
+                    }
+                }
+            }
+            Console.ReadKey();
+        }
+        private static bool isPolyndrom(string input)
+        {
+            if (input.Length > 1)
+            {
+                char[] temp = input.ToCharArray();
+                Array.Reverse(temp);
+                if (input == new string(temp))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}
