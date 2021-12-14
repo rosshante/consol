@@ -1,0 +1,44 @@
+using System;
+
+namespace ConsoleApp29
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double s1, s2, s3, s, p1, p2, p3;
+            int a, b, c, d, e, f, g;
+
+            Console.Write("Сторона a=");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона b=");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона c=");
+            c = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона d=");
+            d = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона e=");
+            e = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона f=");
+            f = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Сторона g=");
+            g = Convert.ToInt32(Console.ReadLine());
+
+            p1 = (a + b + f) / 2;
+            p2 = (f + g + c) / 2;
+            p3 = (e + g + d) / 2;
+
+            s1 = Math.Sqrt(p1 * (p1 - a) * (p1 - b) * (p1 - f)); // площадь треугольника a,b,f
+            s2 = Math.Sqrt(p2 * (p2 - f) * (p2 - g) * (p2 - c)); // площадь треугольника f,g,c
+            s3 = Math.Sqrt(p3 * (p3 - e) * (p3 - g) * (p3 - d)); // площадь треугольника e,g,d
+            s = s1 + s2 + s3;
+
+            Console.WriteLine("Площадь пятиугольника равна = {0:F3}", s);
+            Console.ReadKey();
+
+
+
+        }
+    }
+
+}
