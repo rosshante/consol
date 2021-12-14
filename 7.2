@@ -1,41 +1,54 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ConsoleApplication2
+namespace cZad_7_2
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Введите текст.");
-            string text = Console.ReadLine();
-            char[] separators = { ' ', ',', ':', ';', '.', '!', '?' };
-            string[] splitedText = text.Split(separators);
-            foreach (string str in splitedText)
-            {
-                if (str != null)
-                {
-                    if (isPolyndrom(str))
-                    {
-                        Console.WriteLine(str);
-                    }
-                }
-            }
-            Console.ReadKey();
-        }
-        private static bool isPolyndrom(string input)
-        {
-            if (input.Length > 1)
-            {
-                char[] temp = input.ToCharArray();
-                Array.Reverse(temp);
-                if (input == new string(temp))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
+class Program
+{
+static bool isPalindrom(string str)
+{
+if (str.Length>1)
+{
+char[] temp = str.ToCharArray();
+Array.Reverse(temp);
+if (str == new string(temp))
+{
+return true;
+}
+}
+return false;
+}
+static void Main(string[] args)
+{
+try
+{
+string str;
+string[] str2;
+string res = String.Empty;
+char[] separators = { ' ', ',', '.', '!', '?', ':', ':' };
+Console.WriteLine("Введите строку, разделяя слова знаками препинания или пробелом");
+str = Console.ReadLine();
+str2 = str.Split(separators);
+foreach (string s in str2)
+{
+if (s != null)
+{
+if (isPalindrom(s))
+{
+res += s + ' ';
+}
+}
+}
+if (res==String.Empty)
+{
+throw new Exception("Палинромов не обнаружено!");
+}
+Console.WriteLine("Найденные палиндомы: {0}", res);
+}
+catch (Exception exc)
+{
+
+Console.WriteLine(exc.Message);
+}
+}
+}
 }
