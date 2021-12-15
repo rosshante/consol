@@ -3,44 +3,46 @@ using System.Text;
 
 namespace cZad_7_1
 {
-class Program
-{
-static string F(string src)
-{
-StringBuilder dest = new StringBuilder();
-int i = 0;
-while (i < src.Length)
-{
-int dotsCount = 0;
-while (i < src.Length && src[i] == '.')
-{
-dotsCount++;
-i++;
-}
-if (dotsCount >= 2)
-dest.Append("...");
-else if (dotsCount == 0)
-dest.Append(src[i++]);
-else
-while (dotsCount— > 0)
-dest.Append('.');
-}
-return dest.ToString();
-}
-static void Main(string[] args)
-{
-try
-{
-Console.WriteLine("Введите строку: ");
-string src = Console.ReadLine();
-string dest = F(src);
-Console.WriteLine("Результат:\t{0}", dest);
-}
-catch (Exception exc)
-{
+    class Program
+    {
+        static string F(string src)
+        {
+            StringBuilder dest = new StringBuilder();
+            int i = 0;
+            while (i < src.Length)
+            {
+                int dotsCount = 0;
+                while (i < src.Length && src[i] == '.')
+                {
+                    dotsCount++;
+                    i++;
+                }
+                if (dotsCount >= 2)
+                    dest.Append("...");
+                else if (dotsCount == 0)
+                    dest.Append(src[i++]);
+                else
+                    while (dotsCount-- > 0)
+                    { 
+                        dest.Append('.'); 
+                    }
+            }
+            return dest.ToString();
+        }
+        static void Main(string[] args)
+        {
+            try
+            {
+                Console.WriteLine("Введите строку: ");
+                string src = Console.ReadLine();
+                string dest = F(src);
+                Console.WriteLine("Результат:\t{0}", dest);
+            }
+            catch (Exception exc)
+            {
 
-Console.WriteLine(exc.Message);
-}
-}
-}
+                Console.WriteLine(exc.Message);
+            }
+        }
+    }
 }
