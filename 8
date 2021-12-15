@@ -1,28 +1,49 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace Prog18_nul_10
+namespace cZad_8
 {
     class Program
     {
-        static void Main()
-
+        static bool f(string str, string num)
         {
-            Regex r = new Regex(@"((1\d\d|2([0-4]\d|5[0-5])|\D\d\d?)\.?){4}$");
-            string text1 = "ip = 128.0.0.1";
-            string text2 = "ip = 256.0.0.1";
-            string text3 = "ip = 0.0.0.0";
-            string text4 = "ip = 255.255.255.255";
-            string text5 = "ip = 255:228:0:0";
-            Console.WriteLine(r.IsMatch(text1));
-            Console.WriteLine(r.IsMatch(text2));
-            Console.WriteLine(r.IsMatch(text3));
-            Console.WriteLine(r.IsMatch(text4));
-            Console.WriteLine(r.IsMatch(text5));
+            Regex regex = new Regex(@"([0-9]{1,3}[\.]){3}[0-9]{1,3}");
+            if (regex.IsMatch(str))
+            {
+                Console.WriteLine("Match");
+                string[] arr = str.Split('.');
+                Console.WriteLine(arr.Length);
+                if (arr[arr.Length - 1][0].ToString() == num)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        static void Main(string[] args)
+        {
+            try
+            {
+                string result = "";
+                Console.WriteLine("Введите строку, разделяя слова пробелами: ");
+                string input = Console.ReadLine();
+                Console.Write("Введите цифру: ");
+                int num = int.Parse(Console.ReadLine());
+                string[] masInput = input.Split(' ');
+                foreach (string s in masInput)
+                {
+                    if (!f(s, num.ToString()))
+                    {
+                        result += s + ' ';
+                    }
+                }
+                Console.WriteLine("Результат:\n{0}", result);
+            }
+            catch (Exception exc)
+            {
+
+                Console.WriteLine(exc.Message);
+            }
         }
     }
 }
