@@ -1,0 +1,40 @@
+using System;
+
+namespace consoleTast_2
+{
+    class Program
+    {
+        static void comparison(double x, double y)
+        {
+            if (-x == y && x * x + y * y <= 10 * 10 || x * x + y * y == 10 * 10)
+            {
+                Console.WriteLine("Точки лежат на границе");
+            }
+            else if (x > -y && x * x + y * y < 10 * 10)
+            {
+                Console.WriteLine("Точки лежат внутри");
+            }
+            else
+            {
+                Console.WriteLine("Точки лежат вне");
+            }
+        }
+        static void Main(string[] args)
+        {
+            double x, y;
+            try
+            {
+                Console.Write("Введите x: ");
+                x = Double.Parse(Console.ReadLine());
+                Console.Write("Введите y: ");
+                y = Double.Parse(Console.ReadLine());
+                comparison(x, y);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+
+        }
+    }
+}
