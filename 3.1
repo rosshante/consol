@@ -1,44 +1,57 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ConsoleApp29
+namespace consoleTask__3_1
 {
     class Program
     {
+        static double func(double x, double y, double z)
+        {
+            double p = (x + y + z) / 2;
+            return Math.Sqrt(p * (p - x) * (p - y) * (p - z));
+        }
+        static double square(double a, double b, double c, double d, double e, double f, double g)
+        {
+            return func(a, b, f) + func(f, c, g) + func(g, d, e);
+        }
         static void Main(string[] args)
         {
-            double s1, s2, s3, s, p1, p2, p3;
-            int a, b, c, d, e, f, g;
+            try
+            {
+                double x, y, z;
+                double a, b, c, d, e, f, g;
+                Console.Write("Введите x: ");
+                x = Double.Parse(Console.ReadLine());
+                Console.Write("Введите y: ");
+                y = Double.Parse(Console.ReadLine());
+                Console.Write("Введите z: ");
+                z = Double.Parse(Console.ReadLine());
+                Console.WriteLine("Площадь треугольника по этим сторонам: {0}", func(x, y, z));
 
-            Console.Write("Сторона a=");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона b=");
-            b = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона c=");
-            c = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона d=");
-            d = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона e=");
-            e = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона f=");
-            f = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Сторона g=");
-            g = Convert.ToInt32(Console.ReadLine());
-
-            p1 = (a + b + f) / 2;
-            p2 = (f + g + c) / 2;
-            p3 = (e + g + d) / 2;
-
-            s1 = Math.Sqrt(p1 * (p1 - a) * (p1 - b) * (p1 - f)); // площадь треугольника a,b,f
-            s2 = Math.Sqrt(p2 * (p2 - f) * (p2 - g) * (p2 - c)); // площадь треугольника f,g,c
-            s3 = Math.Sqrt(p3 * (p3 - e) * (p3 - g) * (p3 - d)); // площадь треугольника e,g,d
-            s = s1 + s2 + s3;
-
-            Console.WriteLine("Площадь пятиугольника равна = {0:F3}", s);
-            Console.ReadKey();
-
-
-
+                Console.WriteLine();
+                Console.Write("Введите a: ");
+                a = Double.Parse(Console.ReadLine());
+                Console.Write("Введите b: ");
+                b = Double.Parse(Console.ReadLine());
+                Console.Write("Введите c: ");
+                c = Double.Parse(Console.ReadLine());
+                Console.Write("Введите d: ");
+                d = Double.Parse(Console.ReadLine());
+                Console.Write("Введите e: ");
+                e = Double.Parse(Console.ReadLine());
+                Console.Write("Введите f: ");
+                f = Double.Parse(Console.ReadLine());
+                Console.Write("Введите g: ");
+                g = Double.Parse(Console.ReadLine());
+                Console.WriteLine("Площадь многоугольника: {0}", square(a, b, c, d, e, f, g));
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
         }
     }
-
 }
