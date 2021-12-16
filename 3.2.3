@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace consoleTask_3_2_3
+{
+    class Program
+    {
+        static double f(double x)
+        {
+            if (x<0)
+            {
+                return 0.2 * x * x - x - 0.1;
+            }
+            else if (x==0.1)
+            {
+                return 0;
+            }
+            else
+            {
+                return (x * x) / (x - 0.1);
+            }
+        }
+        static void f(double x, out double y)
+        {
+            if (x < 0)
+            {
+                y = 0.2 * x * x - x - 0.1;
+            }
+            else if (x == 0.1)
+            {
+                y = 0;
+            }
+            else
+            {
+                y = (x * x) / (x - 0.1);
+            }
+        }
+        static void Main(string[] args)
+        {
+            try
+            {
+                double a, b, h;
+                Console.Write("Введите границу A: ");
+                a = Double.Parse(Console.ReadLine());
+                Console.Write("Введите границу B: ");
+                b = Double.Parse(Console.ReadLine());
+                Console.Write("Введите шаг H: ");
+                h = Double.Parse(Console.ReadLine());
+                if (a>=b)
+                {
+                    throw new Exception("А должно быть меньше B");
+                }
+                if (h==0)
+                {
+                    throw new Exception("H должен быть больше 0");
+                }
+                for (double x=a; x<=b; x+=h)
+                {
+                    Console.WriteLine($"y({x}) = {f(x)}");
+                }
+                Console.WriteLine("Пункт 3 (перегруженная функция)");                
+                for (double x = a; x <= b; x += h)
+                {
+                    double y;
+                    f(x, out y);
+                    Console.WriteLine($"y({x}) = {y}");
+                }
+            }
+            catch (Exception exc)
+            {
+
+                Console.WriteLine(exc.Message);
+            }
+                
+        }
+    }
+}
