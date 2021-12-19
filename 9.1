@@ -1,26 +1,88 @@
 using System;
-namespace ConsoleApplication_test
-{
-class Program
-{
-static void Main()
-{
-int i = new int(), a = new int();
-char[] delim = { '.', ',', '!', '?', '-', ';', ':' };
-string my_String;
-Console.WriteLine("Введите строку:");
-my_String = Console.ReadLine();
-for (i = 0; i < delim.Length; ++i)
-{
-a = 0;
-while ((a = my_String.IndexOf(delim[i], a)) > 0)
-{
-my_String = my_String.Remove(a, 1);
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-}
-}
-Console.WriteLine("Строка с убранными знаками препинания: {0}", my_String);
-Console.ReadKey();
-}
-}
+namespace cZad_9_1
+{
+    class Task_1
+    {
+        string result;
+        string path = AppDomain.CurrentDomain.BaseDirectory + "\\task1.bin";
+        public string Result
+        {
+            get
+            {
+                return result;
+            }
+        }
+        public Task_1(string str)
+        {
+            if (str == String.Empty)
+            {
+                throw new Exception("Исключение: пустая строка");
+            }
+            result = f(str);
+        }
+        string f(string str)
+        {
+            StringBuilder sBuild = new StringBuilder(String.Empty);
+            for (int i = 0; i < str.Length; i++)
+            {
+                switch (str[i])
+                {
+                    case '.':
+                    case ',':
+                    case ':':
+                    case ';':
+                    case '!':
+                    case '?':
+                    case '-':
+                        continue;
+                    default:
+                        sBuild.Append(str[i]);
+                        break;
+                }
+            }
+            return sBuild.ToString();
+        }
+        public void Write()
+        {
+            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
+            {
+                writer.Write(result);
+                writer.Close();
+            }
+        }
+        public string Read()
+        {
+            using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
+            {
+                string str = reader.ReadString();
+                reader.Close();
+                return str;
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Console.WriteLine("Вводите предложение: ");
+                string str = Console.ReadLine();
+                Task_1 obj = new Task_1(str);
+                obj.Write();
+                string result = obj.Read();
+                Console.WriteLine(result);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+        }
+    }
 }
