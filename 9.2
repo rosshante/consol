@@ -1,0 +1,70 @@
+using System;
+using System.IO;
+
+namespace cZad_9_2
+{
+    class Task2
+    {
+        string path = AppDomain.CurrentDomain.BaseDirectory + "\\task2.txt";
+        string wPath = AppDomain.CurrentDomain.BaseDirectory + "\\wtask2.txt";
+        string[] strArr;
+        string result = "";
+        public Task2(int k)
+        {
+            strArr = File.ReadAllLines(path);
+            F(k);
+            Write();
+        }
+        void F(int k)
+        {
+            for (int i = 0; i < strArr.Length; i++)
+            {
+                result += strArr[i][k];
+            }
+        }
+        void Write()
+        {
+            File.WriteAllLines(wPath, strArr);
+        }
+        public string Str
+        {
+            get
+            {
+                return String.Join('\n'.ToString(), strArr);
+            }
+        }
+        public string Result
+        {
+            get
+            {
+                return result;
+            }
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Console.Write("Введите номер символов (k): ");
+                Task2 t = new Task2(int.Parse(Console.ReadLine()));
+                Console.WriteLine("Считано:\n{0}\n", t.Str);
+                Console.WriteLine("Результат:\n{0}", t.Result);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message); ;
+            }
+        }
+    }
+}
+Текст:
+Geronimo's cadillac
+Is making all girls turn mad
+Geronimo has a heart — oh it's a drag
+Geronimo's cadillac
+Is making all girls turn sad
+Geronimo has a heart — oh it's a drag
